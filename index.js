@@ -12,6 +12,8 @@ const mymiddleware = (req, res, next) =>{
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//static middlewre 
+app.use(express.static('public'));
 // global middleware all route 
 app.use(mymiddleware);
 
