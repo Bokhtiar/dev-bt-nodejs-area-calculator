@@ -41,6 +41,15 @@ app.post("/circle/store", (req, res) => {
 })
 
 
+app.use((req, res , next) => {
+    res.send("404 not found")
+})
+
+// another error handleing
+app.use((err, req, res, next) => {
+    res.status(500).send("something  broke!!!")
+})
+
 
 app.listen(PORT, () => {
     console.log(`welcome ${PORT}`)
