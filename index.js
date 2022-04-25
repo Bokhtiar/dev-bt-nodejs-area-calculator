@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000 ;
 
-const middleware = (req, res, next) =>{
+const mymiddleware = (req, res, next) =>{
     console.log('middleware function')
     next()
 }
@@ -12,9 +12,10 @@ const middleware = (req, res, next) =>{
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// global middleware all route 
+app.use(mymiddleware);
 
-
-app.get("/", middleware, (req, res) => {
+app.get("/", mymiddleware, (req, res) => {
     res.sendFile(__dirname + "/views/index.html")
 });
 
