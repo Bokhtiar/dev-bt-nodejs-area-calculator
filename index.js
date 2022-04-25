@@ -1,14 +1,20 @@
+require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000 ;
+
+const middleware = (req, res, next) =>{
+    console.log('middleware function')
+    next()
+}
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
 
-app.get("/", (req, res) => {
+app.get("/", middleware, (req, res) => {
     res.sendFile(__dirname + "/views/index.html")
 });
 
